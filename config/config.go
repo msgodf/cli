@@ -33,6 +33,7 @@ const (
 	OracleKeyID         = "key-id"
 	OraclePrivateKey    = "private-key"
 	OracleCompartmentID = "compartment-id"
+	OracleSubnetIDs     = "subnet-ids"
 	OracleDisableCerts  = "disable-certs"
 )
 

@@ -12,10 +12,13 @@ import (
 	"text/tabwriter"
 
 	client "github.com/fnproject/cli/client"
+	config "github.com/fnproject/cli/config"
 	fnclient "github.com/fnproject/fn_go/client"
 	apiroutes "github.com/fnproject/fn_go/client/routes"
 	fnmodels "github.com/fnproject/fn_go/models"
+
 	"github.com/jmoiron/jsonq"
+	"github.com/spf13/viper"
 	"github.com/urfave/cli"
 )
 
@@ -362,6 +365,13 @@ func (a *routesCmd) create(c *cli.Context) error {
 	rt := &fnmodels.Route{}
 	rt.Path = route
 	rt.Image = c.Args().Get(2)
+
+	if viper.GetString(config.ContextProvider) == "oracle" {
+		subnetIDs := strings.Split(viper.GetString(config.OracleSubnetIDs), ",")
+		rt.Annotations = map[string]interface{}{
+			"oracle.com/oci/subnetIds": subnetIDs,
+		}
+	}
 
 	routeWithFlags(c, rt)
 
