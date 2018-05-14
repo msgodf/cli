@@ -65,7 +65,11 @@ func apps() cli.Command {
 				Flags: []cli.Flag{
 					cli.StringSliceFlag{
 						Name:  "config,c",
-						Usage: "route configuration",
+						Usage: "application configuration",
+					},
+					cli.StringSliceFlag{
+						Name:  "annotation",
+						Usage: "application annotations",
 					},
 				},
 			},
