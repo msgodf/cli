@@ -14,6 +14,7 @@ import (
 	"text/template"
 
 	"github.com/fnproject/cli/commands"
+	"github.com/fnproject/cli/common"
 	"github.com/fnproject/cli/common/color"
 	"github.com/fnproject/cli/config"
 	"github.com/spf13/viper"
@@ -42,8 +43,7 @@ func newFn() *cli.App {
 		if err != nil {
 			return err
 		}
-
-		viper.Set("request-id", getRequestID())
+		viper.Set(common.RequestID, common.GetRequestID())
 		commandArgOverrides(c)
 		return nil
 	}
